@@ -1,2 +1,4 @@
-# real-time-fraud-detection
-💳 A real-time machine learning approach for detecting fraudulent transactions in online payments
+# Detecção de Fraudes em Tempo Real
+
+## Objetivo
+Construir uma solução escalável para detectar, em tempo real, transações fraudulentas em um sistema online de pagamentos.

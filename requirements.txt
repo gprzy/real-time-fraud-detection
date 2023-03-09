@@ -1,0 +1,6 @@
+numpy
+pandas
+flask
+pyarrow
+scikit-learn
+lightgbm
