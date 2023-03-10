@@ -3,6 +3,7 @@ pandas
 flask
 pyarrow
 scikit-learn
+lazypredict
 lightgbm
 pre-commit
 black
