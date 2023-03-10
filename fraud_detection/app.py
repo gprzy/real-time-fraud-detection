@@ -8,6 +8,8 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 model = joblib.load('model/lgbm_fraud_detection.sav')
 
+PORT = 5002
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -33,8 +35,7 @@ def health_check():
 
 if __name__ == '__main__':
     app.run(
-        # host='0.0.0.0', 
-        port=5002, 
+        port=PORT, 
         debug=False, 
         threaded=True
     )

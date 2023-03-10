@@ -2,7 +2,7 @@ import time
 import pandas as pd
 
 
-data_base_path = '../../../data/'
+data_base_path = 'data/'
 raw_data_path = 'raw/'
 processed_data_path = 'processed/'
 file_name = 'creditcard'

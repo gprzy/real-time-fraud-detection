@@ -11,6 +11,8 @@ from flask import (
 template_dir = os.path.abspath('./data_source/templates')
 app = Flask(__name__, template_folder=template_dir)
 
+PORT = 5001
+
 
 data_path = './data_source/raw_data/creditcard.csv'
 df = pd.read_csv(data_path)
@@ -41,4 +43,4 @@ def download():
 
 
 if __name__ == '__main__':
-    app.run(port=5001, debug=True)
+    app.run(port=PORT, debug=True)

@@ -4,3 +4,7 @@ flask
 pyarrow
 scikit-learn
 lightgbm
+pre-commit
+black
+flake8
+isort
