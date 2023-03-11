@@ -23,6 +23,13 @@ Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www
     <br> Imagem de Especialização em Data Science e Big Data (UFPR), disponível em Moodle.
 </div>
 
+
+## Arquitetura Proposta
+
+## Escolha das Tecnologias/Ferramentas em Cada Etapa
+
+## Abordagem Escolhida
+
 ## Conjunto de Dados 📊
 A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O conjunto de dados contém **transações feitas por cartões de crédito** em setembro de 2013 por titulares de cartões europeus. Este conjunto de dados apresenta transações que ocorreram em dois dias, onde temos 492 fraudes em 284.807 transações. O conjunto de dados é altamente desequilibrado, a classe positiva (fraudes) representa 0,172% de todas as transações.
 
