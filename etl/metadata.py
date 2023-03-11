@@ -27,9 +27,9 @@ column_names = {
     'V26': 'bandeira_cartao_origem_v26',
     'V27': 'grupo_sistema_operacional_origem_v27',
     'V28': 'taxa_incidencia_fraudes_no_passado_v28',
-    'Amount': 'Amount',
-    'Time': 'Time',
-    'Class': 'Fraud'
+    'Amount': 'Valor',
+    'Time': 'Tempo',
+    'Class': 'Fraude'
 }
 
 column_descriptions = {
@@ -61,7 +61,7 @@ column_descriptions = {
     'bandeira_cartao_origem_v26': '',
     'grupo_sistema_operacional_origem_v27': '',
     'taxa_incidencia_fraudes_no_passado_v28': '',
-    'Amount': '',
-    'Time': '',
-    'Fraud': '',
+    'valor': '',
+    'tempo': '',
+    'fraude': '',
 }
