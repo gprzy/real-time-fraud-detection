@@ -24,11 +24,11 @@ Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www
 </div>
 
 
-## Arquitetura Proposta
+## Arquitetura Proposta 🗜
 
-## Escolha das Tecnologias/Ferramentas em Cada Etapa
+## Escolha das Tecnologias/Ferramentas em Cada Etapa 🛠
 
-## Abordagem Escolhida
+## Abordagem Escolhida 🔨
 
 ## Conjunto de Dados 📊
 A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O conjunto de dados contém **transações feitas por cartões de crédito** em setembro de 2013 por titulares de cartões europeus. Este conjunto de dados apresenta transações que ocorreram em dois dias, onde temos 492 fraudes em 284.807 transações. O conjunto de dados é altamente desequilibrado, a classe positiva (fraudes) representa 0,172% de todas as transações.
@@ -61,7 +61,7 @@ O projeto, de maneira geral, segue as seguintes etapas:
 - **Criação do modelo**: parte mais experimental do processo, englobando *model selection*, *feature engineering*, *feature selection*, *hyperparameter tuning*, entre outros;
 - **Disponibilização do modelo**: produtificação do modelo, empacotamento, conteinerização, construção da API e disponibilização;
 
-## Planejamento do Projeto
+## Planejamento do Projeto 🔬
 Após a definição do nosso objetivo, a próxima etapa é o planejamento das atividades a serem realizadas.
 
 - **Objetivos da Sprint 1**
