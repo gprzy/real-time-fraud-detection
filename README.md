@@ -30,7 +30,7 @@ Existem inúmeras abordagens diferentes para diferentes tipos de problemas de ne
 
 - **Qual será o fluxo geral da detecção das fraudes?** <br> Um modelo de aprendizagem de máquina será previamente treinado com os dados históricos das transações fraudulentas, e então disponibilizado através de uma API, sendo solicitado pelas aplicações, em tempo real, para classificar uma determinada transação, guiando os próximos passos a serem evitados de maneira a mitigar a fraude.
 
-## Arquitetura Proposta 🗜
+## Arquitetura Proposta
 Considerando o problema definido, objetivo levantado e a abordagem escolhida, bem como o fato de que a empresa atualmente já possui aplicações que utilizam serviços em nuvem da [AWS (Amazon Web Services)](https://aws.amazon.com/pt/), o time de dados concluiu, juntamente com o time de negócios, que seria uma boa escolha manter essa escolha por motivos relacionados a facilidade de manutenção, compartilhamento de conhecimentos e padronização de processos.
 
 Segue abaixo um diagrama geral com os serviços da AWS a serem utilizados em diferentes etapas do processo de detecção de fraudes em tempo real: 
@@ -57,7 +57,7 @@ Descrevendo brevemente os componentes da arquitetura acima, temos:
 
 - **Amazon QuickSight** <br> O Amazon QuickSight é um serviço de business intelligence (BI) que permite criar visualizações de dados e relatórios interativos. Esse serviço é algo opcional na arquitetura, pois não é essencial para seu funcionamento, contudo é extremamente útil e proveitoso, caso utilizado em conjunto com os demais componentes. O papel do QuickSight nessa arquitetura é fornecer ferramentas de análise de dados para que os usuários possam explorar informações armazenadas no Amazon S3, obtendo insights valiosos referentes às transações fraudulentas;
 
-## Escolha das Tecnologias/Ferramentas em Cada Etapa 🛠
+## Escolha das Tecnologias/Ferramentas em Cada Etapa
 A escolha dos componentes levou em consideração critérios para se criar uma infraestrutura altamente escalável, dispoível e resiliente, que realiza predições em tempo real, com um fluxo de dados em tempo real e de processamento rápido, eficiente e confiável. No mais, tabém foi considerado um bom custo benefício, por exemplo na escolha do AWS Lambda, que é cobrado de acordo com seu tempo de execução.
 
 - **Amazon API Gateway** <br> Um dos principais benefícios do API Gateway é que ele pode gerenciar automaticamente o tráfego de solicitações de entrada e dimensionar automaticamente para lidar com picos de tráfego, sem que você precise gerenciar infraestrutura;
@@ -70,10 +70,10 @@ A escolha dos componentes levou em consideração critérios para se criar uma i
 
 - **Amazon Kinesis Data Firehose** <br> Uma das principais vantagens do Kinesis Data Firehose refere-se à sua capacidade de processar dados em tempo real, enviando-os para vários destinos e permitindo que o sistema possa ser adaptável a diferentes necessidades de análise e armazenamento;
 
-- **Amazon QuickSight** <br> Uma das principais vantagens do QuickSight é sua facilidade de uso, oferecendo uma interface simples e intuitiva para visualização e análise de dados. Ademais, o QuickSight é capaz de se integrar com outros serviços da AWS, tornando-o uma solução eficiente para analisar grandes quantida 🔨des de dados em tempo real;
+- **Amazon QuickSight** <br> Uma das principais vantagens do QuickSight é sua facilidade de uso, oferecendo uma interface simples e intuitiva para visualização e análise de dados. Ademais, o QuickSight é capaz de se integrar com outros serviços da AWS, tornando-o uma solução eficiente para analisar grandes quantidades de dados em tempo real;
 
 ## Conjunto de Dados 📊
-A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O conjunto de dados contém **transações feitas por cartões de crédito** em setembro de 2013 por titulares de cartões europeus.n Este conjunto de dados apresenta transações que ocorreram em dois dias, onde temos 492 fraudes em 284.807 transações. O conjunto de dados é altamente desequilibrado, a classe positiva (fraudes) representa 0,172% de todas as transações.
+A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O conjunto de dados contém **transações feitas por cartões de crédito** em setembro de 2013 por titulares de cartões europeus. Este conjunto de dados apresenta transações que ocorreram em dois dias, onde temos 492 fraudes em 284.807 transações. O conjunto de dados é altamente desequilibrado, a classe positiva (fraudes) representa 0,172% de todas as transações.
 
 Infelizmente, por motivos de sigilo, o nome das features foi mascarado na base original. Portanto, serão atribuídos nomes fictícios para cada uma delas, para fins do projeto. Segue abaixo uma lista contendo as colunas e suas respectivas descrições:
 
@@ -103,7 +103,7 @@ O projeto, de maneira geral, segue as seguintes etapas:
 - **Criação do modelo** <br> Parte mais experimental do processo, englobando *model selection*, *feature engineering*, *feature selection*, *hyperparameter tuning*, entre outros;
 - **Disponibilização do modelo** <br> Produtificação do modelo, empacotamento, conteinerização, construção da API e disponibilização;
 
-## Planejamento do Projeto 🔬
+## Planejamento do Projeto
 Após a definição do nosso objetivo, a próxima etapa é o planejamento das atividades a serem realizadas.
 
 - **Objetivos da Sprint 1**
