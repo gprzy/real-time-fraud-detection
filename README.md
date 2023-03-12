@@ -4,7 +4,7 @@
     <image src="images/credit.jpg" width=50%>
 </div>
 
-💳 Uma abordagem baseada em Aprendizagem de Máquina para detecção em tempo real de fraudes em um sistema de pagamentos online. Fluxo de ponta-a-ponta e arquitetura AWS.
+💳 Uma abordagem baseada em Aprendizagem de Máquina para detecção em tempo real de fraudes em um sistema online de pagamentos. Fluxo de ponta-a-ponta e arquitetura AWS.
 
 ## Contexto do Negócio 💼
 A **detecção de fraudes** é um desafio significativo para muitas empresas ao redor do mundo. A fraude pode assumir várias formas, desde o roubo de cartões de crédito, bem como roubo da identidade de terceiros, até a falsificação de transações financeiras. A detecção de fraudes em tempo hábil é essencial para minimizar as perdas financeiras oriundas dessa prática, protegendo a reputação da empresa e a integridade dos clientes.
