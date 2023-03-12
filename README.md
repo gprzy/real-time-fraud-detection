@@ -15,7 +15,7 @@ A empresa **"Europe Online Store"** possui um e-commerce onde vende produtos dig
 ## Objetivo 🎯
 Considerando o problema mencionado, o objetivo deste projeto é **construir uma solução escalável, de ponta-a-ponta, para detectar em tempo real transações fraudulentas** em um sistema online de pagamentos. Para tal fim, serão utilizadas técnicas de machine learning, criando uma modelagem preditiva capaz de identificar padrões em transações fraudulentas. Ademais, esse modelo será integrado em uma arquitetura escalável, respeitando as boas práticas de desenvolvimento de software e MLOPs. Como meta do projeto, o modelo deverá ser superior a um baseline aleatório, bem como possuir taxas de acerto de transações fraudulentas e precisão na detecção dessas transações superior ao estado atual da empresa.
 
-## Tabela de Tópicos
+## Lista de Tópicos 📌
 1. [Metodologia Utilizada](#metodologia-utilizada-📝)
 2. [Abordagem Escolhida](#abordagem-escolhida-⌚)
 3. [Arquitetura Proposta](#arquitetura-proposta-🗜)
@@ -56,22 +56,24 @@ Segue abaixo um diagrama geral com os serviços da AWS a serem utilizados em dif
     <br> Arquitetura proposta utilizando a <a href="https://aws.amazon.com/pt/">Amazon Web Services (AWS)</a>. Diagrama feito utilizando a ferramenta <a href="https://app.diagrams.net/">draw.io</a>
 </div>
 
+<br>
+
 Descrevendo brevemente os componentes da arquitetura acima, temos:
-- **Loja Online: Sistema Web** <br> Aplicação Web correspondente à loja online de venda de produtos digitais, onde os usuários interagem diretamente e realizam suas compras. Onde também as tentativas de fraude são realizadas;
+- **Loja Online: Sistema Web** 🛍 <br> Aplicação Web correspondente à loja online de venda de produtos digitais, onde os usuários interagem diretamente e realizam suas compras. Onde também as tentativas de fraude são realizadas;
 
-- **Loja Online: Sistema Mobile** <br> Aplicação opcional, dado que no problema de negócio original não foi incluída a aplicação mobile. Uma solução interessante seria testar o modelo em navegadores (ou onde as aplicações sejam mais estáveis), para então expandir para outros dispositivos;
+- **Loja Online: Sistema Mobile** 📲 <br> Aplicação opcional, dado que no problema de negócio original não foi incluída a aplicação mobile. Uma solução interessante seria testar o modelo em navegadores (ou onde as aplicações sejam mais estáveis), para então expandir para outros dispositivos;
 
-- **Amazon API Gateway** <br> O [Amazon API Gateway](https://aws.amazon.com/pt/api-gateway/) é um serviço totalmente gerenciado que torna mais fácil o desenvolvimento, a publicação, a manutenibilidade, o monitoramento e a segurança de APIs, de maneira escalável. O papel do API Gateway nessa arquitetura é fornecer uma interface de programação de aplicativos (API) para que os clientes possam enviar solicitações para o sistema de detecção de fraudes, atuando como o portão principal de entrada;
+- [Amazon API Gateway](https://aws.amazon.com/pt/api-gateway/) ⚙ <br> O **Amazon API Gateway** é um serviço totalmente gerenciado que torna mais fácil o desenvolvimento, a publicação, a manutenibilidade, o monitoramento e a segurança de APIs, de maneira escalável. O papel do API Gateway nessa arquitetura é fornecer uma interface de programação de aplicativos (API) para que os clientes possam enviar solicitações para o sistema de detecção de fraudes, atuando como o portão principal de entrada;
 
-- **Lambda** <br> O [AWS Lambda](https://aws.amazon.com/pt/lambda/) é um serviço de computação sem servidor (*serverless*) que nos permite executar código sem provisionar ou gerenciar servidores. O papel do Lambda nessa arquitetura é atuar como um intermediário entre o API Gateway e o Amazon SageMaker, recebendo uma solicitação de detecção de fraude e realizando a requisição diretamente no endpoint do SageMaker, encaminhando o resultado obtido novamente à aplicação;
+- [AWS Lambda](https://aws.amazon.com/pt/lambda/) ⚙ <br> O **AWS Lambda** é um serviço de computação sem servidor (*serverless*) que nos permite executar código sem provisionar ou gerenciar servidores. O papel do Lambda nessa arquitetura é atuar como um intermediário entre o API Gateway e o Amazon SageMaker, recebendo uma solicitação de detecção de fraude e realizando a requisição diretamente no endpoint do SageMaker, encaminhando o resultado obtido novamente à aplicação;
 
-- **Amazon SageMaker** <br> O [Amazon SageMaker](https://aws.amazon.com/pt/sagemaker/) é um serviço de aprendizado de máquina totalmente gerenciado que permite criar, treinar e implantar modelos de aprendizado de máquina de maneira escalável. O papel do SageMaker nessa arquitetura é hospedar o modelo de detecção de fraude, permitindo que o AWS Lambda realize predições em tempo real. Adicionalmente, o SageMaker também permite o monitoramento e versionamento de modelos;
+- [Amazon SageMaker](https://aws.amazon.com/pt/sagemaker/) ⚙ <br> O **Amazon SageMaker** é um serviço de aprendizado de máquina totalmente gerenciado que permite criar, treinar e implantar modelos de aprendizado de máquina de maneira escalável. O papel do SageMaker nessa arquitetura é hospedar o modelo de detecção de fraude, permitindo que o AWS Lambda realize predições em tempo real. Adicionalmente, o SageMaker também permite o monitoramento e versionamento de modelos;
 
-- **Amazon Kinesis Data Firehose** <br> O [Amazon Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html) é um serviço de streaming de dados gerenciado que facilita o carregamento escalável de informações em destinos de armazenamento e análise. O papel do Kinesis Data Firehose nessa arquitetura é capturar e processar dados de entrada em tempo real, antes de serem armazenados no Amazon S3, buscando monitorar rapidamente as transações realizadas;
+- [Amazon Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html) ⚙ <br> O **Amazon Kinesis Data Firehose** é um serviço de streaming de dados gerenciado que facilita o carregamento escalável de informações em destinos de armazenamento e análise. O papel do Kinesis Data Firehose nessa arquitetura é capturar e processar dados de entrada em tempo real, antes de serem armazenados no Amazon S3, buscando monitorar rapidamente as transações realizadas;
 
-- **Amazon S3** <br> O [Amazon S3](https://aws.amazon.com/pt/s3/) é um serviço de armazenamento de objetos que oferece escalabilidade, disponibilidade e durabilidade de dados. O papel do Amazon S3 é armazenar tanto os modelos de detecção de fraude a serem utilizados no endpoint do SageMaker (*model registry*), quanto armazenar os dados processados pelo Kinesis Data Firehose, referentes às transações realizadas nas aplicações;
+- [Amazon S3](https://aws.amazon.com/pt/s3/) ⚙ <br> O **Amazon S3** é um serviço de armazenamento de objetos que oferece escalabilidade, disponibilidade e durabilidade de dados. O papel do Amazon S3 é armazenar tanto os modelos de detecção de fraude a serem utilizados no endpoint do SageMaker (*model registry*), quanto armazenar os dados processados pelo Kinesis Data Firehose, referentes às transações realizadas nas aplicações;
 
-- **Amazon QuickSight** <br> O [Amazon QuickSight](https://aws.amazon.com/pt/quicksight/) é um serviço de business intelligence (BI) que permite criar visualizações de dados e relatórios interativos. Esse serviço é algo opcional na arquitetura, pois não é essencial para seu funcionamento, contudo é extremamente útil e proveitoso, caso utilizado em conjunto com os demais componentes. O papel do QuickSight nessa arquitetura é fornecer ferramentas de análise de dados para que os usuários possam explorar informações armazenadas no Amazon S3, obtendo insights valiosos referentes às transações fraudulentas;
+- [Amazon QuickSight](https://aws.amazon.com/pt/quicksight/) ⚙ <br> O **Amazon QuickSight** é um serviço de business intelligence (BI) que permite criar visualizações de dados e relatórios interativos. Esse serviço é algo opcional na arquitetura, pois não é essencial para seu funcionamento, contudo é extremamente útil e proveitoso, caso utilizado em conjunto com os demais componentes. O papel do QuickSight nessa arquitetura é fornecer ferramentas de análise de dados para que os usuários possam explorar informações armazenadas no Amazon S3, obtendo insights valiosos referentes às transações fraudulentas;
 
 ## Escolha da Arquitetura
 Existem inúmeras maneiras de se realizar tarefas semelhantes utilizando os diversos serviços em nuvem disponíveis, tais como máquinas EC2, instâncias de contâineres, kubernetes, entre diversos outros serviços de computação. Contudo, precisamos escolher um que apresente um bom balanço entre custo/benefício. A escolha dos componentes levou em consideração critérios para se criar uma infraestrutura altamente escalável, dispoível e resiliente, que realiza predições em tempo real, com um fluxo de dados em tempo real e de processamento rápido, eficiente e confiável. No mais, tabém foi considerado um bom custo benefício, por exemplo na escolha do AWS Lambda, que é cobrado de acordo com seu tempo de execução. Segue abaixo os serviços utilizados e seus respectivos benefícios em relação à detecção de fraudes em tempo real:
@@ -119,9 +121,9 @@ O projeto, de maneira geral, segue as seguintes etapas:
 - **Criação do modelo** <br> Parte mais experimental do processo, englobando *model selection*, *feature engineering*, *feature selection*, *hyperparameter tuning*, entre outros;
 - **Disponibilização do modelo** <br> Produtificação do modelo, empacotamento, conteinerização, construção da API e disponibilização;
 
-## Escolha das Ferramentas/Tecnologias em Cada Etapa
+## Escolha das Ferramentas/Tecnologias em Cada Etapa 🛠
 
-## Planejamento do Projeto
+## Planejamento do Projeto 🔬
 Após a definição do nosso objetivo, a próxima etapa é o planejamento das atividades a serem realizadas.
 
 - **Objetivos da Sprint 1**
