@@ -19,12 +19,13 @@ Considerando o problema mencionado, o objetivo deste projeto é **construir uma 
 1. [Metodologia Utilizada](#metodologia-utilizada-📝)
 2. [Abordagem Escolhida](#abordagem-escolhida-⌚)
 3. [Arquitetura Proposta](#arquitetura-proposta-🗜)
-4. [Escolha das Tecnologias/Ferramentas em Cada Etapa](#escolha-das-tecnologiasferramentas-em-cada-etapa-🛠)
+4. [Escolha da Arquitetura](#escolha-da-arquitetura)
 5. [Conjunto de Dados](#conjunto-de-dados-📊)
 6. [Principais KPIs e Métricas](#principais-kpis-e-métricas-📈)
 7. [Visão Geral do Projeto](#visão-geral-do-projeto-🔎)
-8. [Planejamento do Projeto](#planejamento-do-projeto)
-9. [Resultados Obtidos](#resultados-obtidos-🏆)
+8. [Escolha das Ferramentas/Tecnologias em Cada Etapa](escolha-das-ferramentas-tecnologias-em-cada-etapa)
+9. [Planejamento do Projeto](#planejamento-do-projeto)
+10. [Resultados Obtidos](#resultados-obtidos-🏆)
 
 ## Metodologia Utilizada 📝
 Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www.ibm.com/docs/en/spss-modeler/saas?topic=dm-crisp-help-overview) (traduzido como "Processo Padrão Inter-Indústrias para Mineração de Dados"), sendo um processo construtivo-investigativo na resolução de problemas de negócio em Ciência de Dados.
@@ -72,10 +73,8 @@ Descrevendo brevemente os componentes da arquitetura acima, temos:
 
 - **Amazon QuickSight** <br> O [Amazon QuickSight](https://aws.amazon.com/pt/quicksight/) é um serviço de business intelligence (BI) que permite criar visualizações de dados e relatórios interativos. Esse serviço é algo opcional na arquitetura, pois não é essencial para seu funcionamento, contudo é extremamente útil e proveitoso, caso utilizado em conjunto com os demais componentes. O papel do QuickSight nessa arquitetura é fornecer ferramentas de análise de dados para que os usuários possam explorar informações armazenadas no Amazon S3, obtendo insights valiosos referentes às transações fraudulentas;
 
-## Escolha das Tecnologias/Ferramentas em Cada Etapa 🛠
-A criação, experimentação, treino e validação do modelo será feita utilizando a linguagem [Python](https://www.python.org/), devido ao grande número de bibliotecas que facilitam inúmeras tarefas relacionadas à Ciência de Dados, bem como a sua extensiva utilização nessa área.
-
-A escolha dos componentes levou em consideração critérios para se criar uma infraestrutura altamente escalável, dispoível e resiliente, que realiza predições em tempo real, com um fluxo de dados em tempo real e de processamento rápido, eficiente e confiável. No mais, tabém foi considerado um bom custo benefício, por exemplo na escolha do AWS Lambda, que é cobrado de acordo com seu tempo de execução. Segue abaixo os serviços utilizados e seus respectivos benefícios em relação à detecção de fraudes em tempo real:
+## Escolha da Arquitetura
+Existem inúmeras maneiras de se realizar tarefas semelhantes utilizando os diversos serviços em nuvem disponíveis, tais como máquinas EC2, instâncias de contâineres, kubernetes, entre diversos outros serviços de computação. Contudo, precisamos escolher um que apresente um bom balanço entre custo/benefício. A escolha dos componentes levou em consideração critérios para se criar uma infraestrutura altamente escalável, dispoível e resiliente, que realiza predições em tempo real, com um fluxo de dados em tempo real e de processamento rápido, eficiente e confiável. No mais, tabém foi considerado um bom custo benefício, por exemplo na escolha do AWS Lambda, que é cobrado de acordo com seu tempo de execução. Segue abaixo os serviços utilizados e seus respectivos benefícios em relação à detecção de fraudes em tempo real:
 
 - **Amazon API Gateway** ✔ <br> Um dos principais benefícios do API Gateway é que ele pode gerenciar automaticamente o tráfego de solicitações de entrada e dimensionar automaticamente para lidar com picos de tráfego, sem que você precise gerenciar infraestrutura;
 
@@ -119,6 +118,8 @@ O projeto, de maneira geral, segue as seguintes etapas:
 - **Análise de dados** <br> Engloba EDA, validação de hipóteses, entre outros;
 - **Criação do modelo** <br> Parte mais experimental do processo, englobando *model selection*, *feature engineering*, *feature selection*, *hyperparameter tuning*, entre outros;
 - **Disponibilização do modelo** <br> Produtificação do modelo, empacotamento, conteinerização, construção da API e disponibilização;
+
+## Escolha das Ferramentas/Tecnologias em Cada Etapa
 
 ## Planejamento do Projeto
 Após a definição do nosso objetivo, a próxima etapa é o planejamento das atividades a serem realizadas.
