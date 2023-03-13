@@ -221,4 +221,25 @@ Após a definição do nosso objetivo, a próxima etapa é o planejamento das at
     - Ajustes finais no modelo, adaptações e possíveis melhorias;
     - Disponibilização do modelo através de uma API (*model deployment*);
 
-## Resultados Obtidos 🏆
+## Resultados Obtidos (80% de acerto!) 🏆
+Os resultados abaixo são referentes ao modelo de detecção de fraude, utilizando um `LGBMClassifier`. O modelo foi treinado com dados balanceados, utilizando `SMOTE`, e então testado nos dados originais. Ademais, os hiperparâmetros do modelo foram otimizados através de uma otimização Bayesiana, e por fim foi escolhido um threshold que maximizasse seu desempenho. Segue abaixo as métricas obridas, respectivamente a matriz de confusão, a curva ROC AUC e o KS:
+
+<div align="center">
+    <image src="images/metrics/cm.png" width=50%>
+    <br> Matriz de Confusão do Modelo de Detecção de Fraudes.
+</div> <br>
+
+<div align="center">
+    <image src="images/metrics/roc.png" width=50%>
+    <br> Curva ROC AUC do Modelo de Detecção de Fraudes.
+</div> <br>
+
+<div align="center">
+    <image src="images/metrics/ks.png" width=50%>
+    <br> KS do Modelo de Detecção de Fraudes.
+</div> <br>
+
+**O modelo foi capaz de detectar corretamente 80% das transações fraudulentas, com uma precisão de 89%**. A precisão e revocação de detecção das transações não fraudulentas foi de aproximadamente 100%.
+
+## Considerações Finais
+O modelo apresentou um ótimo desempenho, com um bom equiíbrio entre acertos e falsos positivos. Com isso, o modelo cumpre com as metras a ele atreladas, apresentando um desempenho superior ao estado atual de detecção de fraudes no setor de risco da empresa, bem como em um tempo menor e de maneira mais eficiente!
