@@ -40,13 +40,13 @@ Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www
     <br> Imagem de Especialização em Data Science e Big Data (UFPR), disponível em <a href="https://moodle.com/pt/">Moodle</a>.
 </div>
 
-## Um Problema com Detecção de Fraudes: Desbalanceamento!
+## Um Problema com Detecção de Fraudes: Desbalanceamento! ⚖
 É muito comum em problemas de detecção de fraudes que o evento de interesse (no nosso caso, a fraude) ocorra com uma frequência muito menor que os eventos da classe majoritária. Essa característica, em aprendizagem de máquina, é conhecida como **desbalanceamento de classes**, gerando diversas implicações na criação de modelos. Os modelos apresentam um "viés" para classificar as classes como pertencentes à classe majoritária, gerando pouco ou até mesmo nenhum apredizado. Contornar esse problema é uma tarefa desafiadora, existindo diversas técnicas que podem ajudar nesse contexto; entre tais técnicas, temos estratégias de:
-- **Undersampling** <br> É a redução do número de instâncias da classe majoritária, para que as classes se igualem em quantidade. Alguns exemplos de técnicas possíveis de serem utilizadas, dessa categoria, são:
+- **Undersampling** ⬇ <br> É a redução do número de instâncias da classe majoritária, para que as classes se igualem em quantidade. Alguns exemplos de técnicas possíveis de serem utilizadas, dessa categoria, são:
     - `RandomUnderSampler`;
     - `TomekLinks`;
     - `NearMiss`;
-- **Oversampling** <br> Processo contrário ao apresentado acima. Se refere a inserção de instâncias pertencentes à classe minoritária, seguindo alguma estratégia, como por exemplo inserção de dados sintéticos. Alguns exemplos de técnicas dessa categoria são:
+- **Oversampling** ⬆ <br> Processo contrário ao apresentado acima. Se refere a inserção de instâncias pertencentes à classe minoritária, seguindo alguma estratégia, como por exemplo inserção de dados sintéticos. Alguns exemplos de técnicas dessa categoria são:
     - `RandomOverSampler`;
     - `SMOTE` (Synthetic Minority Over-sampling Technique);
     - `ADASYN` (Adaptive Synthetic Sampling);
@@ -90,7 +90,7 @@ Existem inúmeras abordagens diferentes para diferentes tipos de problemas de ne
     <br> Fluxo Geral de Detecção de Fraudes. Diagrama criado utilizando <a href="https://mermaid.js.org/">Mermaid.js</a>.
 </div>
 
-## Ciclo de Vida de um Modelo de Machine Learning
+## Ciclo de Vida de um Modelo de Machine Learning 🌱
 Todo modelo de aprendizagem de máquina, assim como qualquer solução de software, possui um ciclo de vida com algumas etapas aproximadamente definidas. Ao pensar na solução proposta, o time de dados considerou todas essas etapas e buscou aplicar as boas práticas de MLOPs nos diferentes escopos da solução. Segue uma imagem abaixo para ilustrar esse ciclo de vida dos modelos de aprendizagem de máquina:
 
 <div align="center">
@@ -127,7 +127,7 @@ Descrevendo brevemente os componentes da arquitetura acima, temos:
 
 - [Amazon QuickSight](https://aws.amazon.com/pt/quicksight/) ⚙ <br> O **Amazon QuickSight** é um serviço de business intelligence (BI) que permite criar visualizações de dados e relatórios interativos. Esse serviço é algo opcional na arquitetura, pois não é essencial para seu funcionamento, contudo é extremamente útil e proveitoso, caso utilizado em conjunto com os demais componentes. O papel do QuickSight nessa arquitetura é fornecer ferramentas de análise de dados para que os usuários possam explorar informações armazenadas no Amazon S3, obtendo insights valiosos referentes às transações fraudulentas;
 
-## Escolha da Arquitetura
+## Escolha da Arquitetura 🚀
 Existem inúmeras maneiras de se realizar tarefas semelhantes utilizando os diversos serviços em nuvem disponíveis, tais como máquinas EC2, instâncias de contâineres, kubernetes, entre diversos outros serviços de computação. Contudo, precisamos escolher um que apresente um bom balanço entre custo/benefício. A escolha dos componentes levou em consideração critérios para se criar uma infraestrutura altamente escalável, dispoível e resiliente, que realiza predições em tempo real, com um fluxo de dados em tempo real e de processamento rápido, eficiente e confiável. No mais, tabém foi considerado um bom custo benefício, por exemplo na escolha do AWS Lambda, que é cobrado de acordo com seu tempo de execução. Segue abaixo os serviços utilizados e seus respectivos benefícios em relação à detecção de fraudes em tempo real:
 
 - **Amazon API Gateway** ✔ <br> Um dos principais benefícios do API Gateway é que ele pode gerenciar automaticamente o tráfego de solicitações de entrada e dimensionar automaticamente para lidar com picos de tráfego, sem que você precise gerenciar infraestrutura. A ideia é fornecer uma maneira centralizada e eficiente para trabalhar com as requisições de detecção de fraude;
