@@ -152,11 +152,12 @@ Como mencionado, utilizaremos o Amazon SageMaker para monitoramento do modelo. O
 
 No que diz respeito ao modelo em si, **como podemos saber quando o modelo está obsoleto?** Ou então, em outras palavras, **como saber se a performance do modelo está satisfatória?**
 
-- Em aprendizagem de máquina, existe um fenômeno chamado **data-drift**, quando os dados utilizados para treinar um modelo sofrem mudanças significativas ao longo do tempo, de tal maneira que a amostra utilizada para treinar o modelo já não é mais representativa do fenômeno modelado. Para detectar o data-drift, e também avaliar a performance do modelo em produção, podemos:
-    - **Avaliar a variação das principais métricas** do modelo ao longo do tempo (e.g. acurácia, revocação, precisão);
-    - **Avaliar a diferença entre as distribuições passada e atual**, por exemplo através de um gráfico, visando observar se a distribuição mudou, tornando necessário retreinar o modelo;
-    - **Testes estatísticos**, como o teste de hipótese de Kolmogorov-Smirnov, o t-test e o teste de Qui-Quadrado podem ser usados para detectar data drift. Esses testes comparam as distribuições dos dados históricos e atuais e determinam se a diferença é estatisticamente significativa;
-    - Quaisquer outros métodos de detecção de anomalias e diferenças entre os dados passados e atuais, utilizando diversas técnicas estatísticas e de aprendizagem de máquina;
+Em aprendizagem de máquina, existe um fenômeno chamado **data-drift**, quando os dados utilizados para treinar um modelo sofrem mudanças significativas ao longo do tempo, de tal maneira que a amostra utilizada para treinar o modelo já não é mais representativa do fenômeno modelado. Para detectar o data-drift, e também avaliar a performance do modelo em produção, podemos:
+    
+- **Avaliar a variação das principais métricas** do modelo ao longo do tempo (e.g. acurácia, revocação, precisão);
+- **Avaliar a diferença entre as distribuições passada e atual**, por exemplo através de um gráfico, visando observar se a distribuição mudou, tornando necessário retreinar o modelo;
+- **Testes estatísticos**, como o teste de hipótese de Kolmogorov-Smirnov, o t-test e o teste de Qui-Quadrado podem ser usados para detectar data drift. Esses testes comparam as distribuições dos dados históricos e atuais e determinam se a diferença é estatisticamente significativa;
+- Quaisquer outros métodos de detecção de anomalias e diferenças entre os dados passados e atuais, utilizando diversas técnicas estatísticas e de aprendizagem de máquina;
 
 ## Conjunto de Dados 📊
 A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O conjunto de dados contém **transações feitas por cartões de crédito** em setembro de 2013 por titulares de cartões europeus. Este conjunto de dados apresenta transações que ocorreram em dois dias, onde temos 492 fraudes em 284.807 transações. O conjunto de dados é altamente desequilibrado, a classe positiva (fraudes) representa 0,172% de todas as transações.
