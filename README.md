@@ -17,16 +17,16 @@ Considerando o problema mencionado, o objetivo deste projeto é **construir uma 
 
 ## Lista de Tópicos 📌
 1. [Metodologia Utilizada](#metodologia-utilizada-📝)
-2. [Um Problema com Detecção de Fraudes: Desbalanceamento!](#)
-3. [Quais Informações são Relevantes?](#)
+2. [Um Problema com Detecção de Fraudes: Desbalanceamento!](#metodologia-utilizada-📝)
+3. [Quais Informações são Relevantes?](#metodologia-utilizada-📝)
 4. [Abordagem Escolhida](#abordagem-escolhida-⌚)
-5. [Ciclo de Vida de um Modelo de Machine Learning](#)
+5. [Ciclo de Vida de um Modelo de Machine Learning](#metodologia-utilizada-📝)
 6. [Arquitetura Proposta](#arquitetura-proposta-🗜)
 7. [Escolha da Arquitetura](#escolha-da-arquitetura)
 8. [Conjunto de Dados](#conjunto-de-dados-📊)
 9. [Principais KPIs e Métricas](#principais-kpis-e-métricas-📈)
 10. [Visão Geral do Projeto](#visão-geral-do-projeto-🔎)
-11. [Escolha das Ferramentas/Tecnologias em Cada Etapa](escolha-das-ferramentas-tecnologias-em-cada-etapa)
+11. [Escolha das Ferramentas/Tecnologias em Cada Etapa](#escolha-das-ferramentas-tecnologias-em-cada-etapa)
 12. [Planejamento do Projeto](#planejamento-do-projeto)
 13. [Resultados Obtidos](#resultados-obtidos-🏆)
 
@@ -51,35 +51,35 @@ Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www
 
 A escolha da técnica específica depende das particularidades do problema sendo abordado. É comum, em problemas de detecção de fraude, a mistura de diversas técnicas, entre elas a criação de **stacks** de modelos, *ensembles* treinados com variedades balanceadas dos dados originais, utilizando técnicas semelhantes às descritas acima, fornecendo uma capacidade preditiva superior. No geral, os modelos são também treinados utilizando separações estratificadas de dados, ou seja, mantendo as proporções das classes, para não aumentar ainda mais o desbalanceamento. Existem, ainda, outros métodos complementares nos quais pesos específicos são atribuídos à classe minoritária, visando compensar a menor quantidade.
 
-## Quais Informações são Relevantes?
+## Quais Informações são Relevantes? 💸
 Em detecção de fraudes, existe uma gama de informações que em geral são úteis e relevantes para se descobrir atividades fraudulentas. Segue abaixo algumas delas:
 
-- **Endereço IP do dispositivo de origem** <br> As instituições financeiras podem verificar o endereço IP do dispositivo usado para fazer a transação e verificar se ele está geograficamente próximo ao endereço de faturamento do cartão de crédito. Além disso, eles podem verificar se o endereço IP está em uma lista de endereços conhecidos por atividades fraudulentas;
+- **Endereço IP do dispositivo de origem** 💻 <br> As instituições financeiras podem verificar o endereço IP do dispositivo usado para fazer a transação e verificar se ele está geograficamente próximo ao endereço de faturamento do cartão de crédito. Além disso, eles podem verificar se o endereço IP está em uma lista de endereços conhecidos por atividades fraudulentas;
 
-- **Localização geográfica** <br> As instituições financeiras também podem verificar a localização geográfica da transação e verificar se ela está em uma área conhecida por atividades fraudulentas, como mencionado no tópico anterior;
+- **Localização geográfica** 🌎 <br> As instituições financeiras também podem verificar a localização geográfica da transação e verificar se ela está em uma área conhecida por atividades fraudulentas, como mencionado no tópico anterior;
 
-- **Valor da transação** <br> Valores muito altos ou muito baixos em relação à transação média do usuário podem ser indicadores de atividade fraudulenta. Em suma, anomalias nos valores usuais daquele cliente;
+- **Valor da transação** 💰 <br> Valores muito altos ou muito baixos em relação à transação média do usuário podem ser indicadores de atividade fraudulenta. Em suma, anomalias nos valores usuais daquele cliente;
 
-- **Tipo de transação** <br> As instituições financeiras podem verificar o tipo de transação que está sendo realizada e se ela é consistente com o histórico de transações do usuário. Ainda, transações de um tipo específico podem aumentar a probabilidade de ocorrência de uma fraude, especialmente padrões de trocas abruptas do tipo transacional;
+- **Tipo de transação** 💱 <br> As instituições financeiras podem verificar o tipo de transação que está sendo realizada e se ela é consistente com o histórico de transações do usuário. Ainda, transações de um tipo específico podem aumentar a probabilidade de ocorrência de uma fraude, especialmente padrões de trocas abruptas do tipo transacional;
 
-- **Padrões de gastos** <br> As instituições financeiras podem verificar se o padrão de gastos do usuário mudou recentemente ou se há transações incomuns que não estão em conformidade com o histórico de gastos do usuário. Esse item é complementar ao que se refere ao valor da transação, visando obter informações a respeito dos padrões de gasto do cliente e o quanto as transações distoam desse padrão;
+- **Padrões de gastos** 📈 <br> As instituições financeiras podem verificar se o padrão de gastos do usuário mudou recentemente ou se há transações incomuns que não estão em conformidade com o histórico de gastos do usuário. Esse item é complementar ao que se refere ao valor da transação, visando obter informações a respeito dos padrões de gasto do cliente e o quanto as transações distoam desse padrão;
 
-- **Histórico de transações** <br> O histórico de transações do usuário pode ser verificado para identificar transações suspeitas ou atividades incomuns. No mais, a análise do histórico também fornece exemplos de padrões em históricos trnasacionais não fraudulentos;
+- **Histórico de transações** 📶 <br> O histórico de transações do usuário pode ser verificado para identificar transações suspeitas ou atividades incomuns. No mais, a análise do histórico também fornece exemplos de padrões em históricos trnasacionais não fraudulentos;
 
-- **Tipo de cartão de crédito** <br> Algumas instituições financeiras consideram o tipo de cartão de crédito usado para fazer a transação e se ele é consistentemente usado para fazer compras caras ou incomuns, fornecendo possivelmente uma maior probabilidade de fraude;
+- **Tipo de cartão de crédito** 💳 <br> Algumas instituições financeiras consideram o tipo de cartão de crédito usado para fazer a transação e se ele é consistentemente usado para fazer compras caras ou incomuns, fornecendo possivelmente uma maior probabilidade de fraude;
 
-- **Frequência de uso** <br> A frequência de uso do cartão de crédito também pode ser um indicador de atividade fraudulenta, especialmente se houver um aumento repentino no uso do cartão;
+- **Frequência de uso** 🕐 <br> A frequência de uso do cartão de crédito também pode ser um indicador de atividade fraudulenta, especialmente se houver um aumento repentino no uso do cartão;
 
 Todos os itens acima referem-se, em geral, à quebras abruptas no padrão de gasto de um cliente, ou então diretamente à atividades tipicamente suspeitas. No geral, as informações acima referem-se à features que buscam quantificar anomalias, quebras de frequência, diferenças nos gastos usuais, e, por fim, compondo esses itens suspeitos para gerar uma classificação final.
 
 ## Abordagem Escolhida ⌚
 Existem inúmeras abordagens diferentes para diferentes tipos de problemas de negócio, computação e aprendizagem de máquina. No tocante ao nosso problema de detecção de fraudes, mais especificamente em relação ao modelo de aprendizagem de máquina subjacente, temos algumas possíveis abordagens distintas, entre elas:
 
-- **Em Tempo Real** (*real-time*) <br> A abordagem mais adequada para detecções de fraude em tempo hábil, em relação à aprendizagem de máquina, é a **real-time**, pois precisamos detectar as fraudes antes que ocorram, de maneira rápida. Uma maneira comum de realizar isso é enviando uma requisição à um modelo previamente treinado, que irá nos dizer se uma determinada transação é ou não uma transação fraudulenta, ou então qual a probabilidade que seja fraudulenta de fato;
+- **Em Tempo Real** ⏱ (*real-time*) <br> A abordagem mais adequada para detecções de fraude em tempo hábil, em relação à aprendizagem de máquina, é a **real-time**, pois precisamos detectar as fraudes antes que ocorram, de maneira rápida. Uma maneira comum de realizar isso é enviando uma requisição à um modelo previamente treinado, que irá nos dizer se uma determinada transação é ou não uma transação fraudulenta, ou então qual a probabilidade que seja fraudulenta de fato;
 
-- **Em Lotes** (*batch*) <br> A abordagem em *batch*, nesse caso em específico, não é indicada, uma vez que realizaríamos predições em lotes de dados, geralmente periodicamente, podendo descobrir as fraudes após estas já terem ocorrido. 
+- **Em Lotes** (*batch*) 📦 <br> A abordagem em *batch*, nesse caso em específico, não é indicada, uma vez que realizaríamos predições em lotes de dados, geralmente periodicamente, podendo descobrir as fraudes após estas já terem ocorrido. 
 
-- **Em Fluxos** (*stream*) <br> Primeiramente, é importante fazer uma distinção: o conceito de "stream" para a Engenharia de Dados, em relação à fluxos de dados, é diferente da definição de "stream" no contexto de modelos de aprendizagem de máquina. A primeira refere-se à um tipo especial de processamento de dados em tempo real, mais especificamente relacionados à ordem sequencial e contínua dos dados. A última, refere-se a tipos particulares de modelos capazes de se adaptarem às mudanças nos dados ao longo do tempo (i.e. data drift), reduzindo as necessidades de retreino e potencialmente aperfeiçoando seu desempenho ao longo do tempo. Dito isto, a abordagem em stream é uma alternativa interessante e possível, caso feita em tempo real, de maneira semelhante à abordagem em tempo real. Contudo, como não se obteve nenhuma informação adicional de que os dados das transações estão sofrendo mudanças de padrão e comportamento, optamos por utilizar os modelos tradicionais (treinados em batch) ao invés dos modelos em stream. Uma das razões é a maior complexidade de implementação, validação e monitoramento desses modelos, bem como o fato dos dados não estarem sofrendo mudanças significativas. Por fim, o processo de retreino periódico pode ser benéfico em termos de compreensão de negócio, e deve ser feito cuidadosamente. Muitas vezes é preferível realizá-lo manualmente ao invés de uma forma automatizada, devido à natureza do problema abordado. 
+- **Em Fluxos** (*stream*) ⏩ <br> Primeiramente, é importante fazer uma distinção: o conceito de "stream" para a Engenharia de Dados, em relação à fluxos de dados, é diferente da definição de "stream" no contexto de modelos de aprendizagem de máquina. A primeira refere-se à um tipo especial de processamento de dados em tempo real, mais especificamente relacionados à ordem sequencial e contínua dos dados. A última, refere-se a tipos particulares de modelos capazes de se adaptarem às mudanças nos dados ao longo do tempo (i.e. data drift), reduzindo as necessidades de retreino e potencialmente aperfeiçoando seu desempenho ao longo do tempo. Dito isto, a abordagem em stream é uma alternativa interessante e possível, caso feita em tempo real, de maneira semelhante à abordagem em tempo real. Contudo, como não se obteve nenhuma informação adicional de que os dados das transações estão sofrendo mudanças de padrão e comportamento, optamos por utilizar os modelos tradicionais (treinados em batch) ao invés dos modelos em stream. Uma das razões é a maior complexidade de implementação, validação e monitoramento desses modelos, bem como o fato dos dados não estarem sofrendo mudanças significativas. Por fim, o processo de retreino periódico pode ser benéfico em termos de compreensão de negócio, e deve ser feito cuidadosamente. Muitas vezes é preferível realizá-lo manualmente ao invés de uma forma automatizada, devido à natureza do problema abordado. 
 
 - **Qual será o fluxo geral da detecção das fraudes?** <br> Um modelo de aprendizagem de máquina será previamente treinado com os dados históricos das transações fraudulentas, e então disponibilizado através de uma API, sendo solicitado pelas aplicações, em tempo real, para classificar uma determinada transação, guiando os próximos passos a serem evitados de maneira a mitigar a fraude. Abaixo, segue um diagrama simples para ilustrar esse fluxo geral:
 
@@ -88,7 +88,7 @@ Existem inúmeras abordagens diferentes para diferentes tipos de problemas de ne
     <br> Diagrama criado utilizando <a href="https://mermaid.js.org/">Mermaid.js</a>.
 </div>
 
-## Ciclo de Vida de um Modelo de Machine Learning
+## Ciclo de Vida de um Modelo de Machine Learning 🌱
 Todo modelo de aprendizagem de máquina, assim como qualquer solução de software, possui um ciclo de vida com algumas etapas aproximadamente definidas. Ao pensar na solução proposta, o time de dados considerou todas essas etapas e buscou aplicar as boas práticas de MLOPs nos diferentes escopos da solução. Segue uma imagem abaixo para ilustrar esse ciclo de vida dos modelos de aprendizagem de máquina:
 
 <div align="center">
@@ -125,7 +125,7 @@ Descrevendo brevemente os componentes da arquitetura acima, temos:
 
 - [Amazon QuickSight](https://aws.amazon.com/pt/quicksight/) ⚙ <br> O **Amazon QuickSight** é um serviço de business intelligence (BI) que permite criar visualizações de dados e relatórios interativos. Esse serviço é algo opcional na arquitetura, pois não é essencial para seu funcionamento, contudo é extremamente útil e proveitoso, caso utilizado em conjunto com os demais componentes. O papel do QuickSight nessa arquitetura é fornecer ferramentas de análise de dados para que os usuários possam explorar informações armazenadas no Amazon S3, obtendo insights valiosos referentes às transações fraudulentas;
 
-## Escolha da Arquitetura
+## Escolha da Arquitetura 🚀
 Existem inúmeras maneiras de se realizar tarefas semelhantes utilizando os diversos serviços em nuvem disponíveis, tais como máquinas EC2, instâncias de contâineres, kubernetes, entre diversos outros serviços de computação. Contudo, precisamos escolher um que apresente um bom balanço entre custo/benefício. A escolha dos componentes levou em consideração critérios para se criar uma infraestrutura altamente escalável, dispoível e resiliente, que realiza predições em tempo real, com um fluxo de dados em tempo real e de processamento rápido, eficiente e confiável. No mais, tabém foi considerado um bom custo benefício, por exemplo na escolha do AWS Lambda, que é cobrado de acordo com seu tempo de execução. Segue abaixo os serviços utilizados e seus respectivos benefícios em relação à detecção de fraudes em tempo real:
 
 - **Amazon API Gateway** ✔ <br> Um dos principais benefícios do API Gateway é que ele pode gerenciar automaticamente o tráfego de solicitações de entrada e dimensionar automaticamente para lidar com picos de tráfego, sem que você precise gerenciar infraestrutura. A ideia é fornecer uma maneira centralizada e eficiente para trabalhar com as requisições de detecção de fraude;
