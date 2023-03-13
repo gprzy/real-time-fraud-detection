@@ -168,7 +168,7 @@ A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https:/
 
 Infelizmente, por motivos de sigilo, o nome das features foi mascarado na base original. Portanto, serão atribuídos nomes fictícios para cada uma delas, para fins do projeto. Segue abaixo uma lista contendo as colunas e suas respectivas descrições:
 
-| Coluna | Nome alternativo | Tipo de dados | Descrição |
+| Nome Original | Nome Fictício/Atualizado | Tipo | Descrição |
 |--------|-----------------|--------------|-----------|
 | `V1` | `bandeira_origem_v1` | `float64` | Bandeira do cartão utilizado na transação pela origem |
 | `V2` | `bandeira_destino_v2` | `float64` | Bandeira do cartão utilizado na transação pelo destino |
