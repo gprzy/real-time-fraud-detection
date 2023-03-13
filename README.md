@@ -23,12 +23,13 @@ Considerando o problema mencionado, o objetivo deste projeto é **construir uma 
 5. [Ciclo de Vida de um Modelo de Machine Learning](#)
 6. [Arquitetura Proposta](#arquitetura-proposta-🗜)
 7. [Escolha da Arquitetura](#escolha-da-arquitetura)
-8. [Conjunto de Dados](#conjunto-de-dados-📊)
-9. [Principais KPIs e Métricas](#principais-kpis-e-métricas-📈)
-10. [Visão Geral do Projeto](#visão-geral-do-projeto-🔎)
-11. [Escolha das Ferramentas/Tecnologias em Cada Etapa](escolha-das-ferramentas-tecnologias-em-cada-etapa)
-12. [Planejamento do Projeto](#planejamento-do-projeto)
-13. [Resultados Obtidos](#resultados-obtidos-🏆)
+8. [Como Monitorar a Performance do Modelo em Produção?](#escolha-da-arquitetura)
+9. [Conjunto de Dados](#conjunto-de-dados-📊)
+10. [Principais KPIs e Métricas](#principais-kpis-e-métricas-📈)
+11. [Visão Geral do Projeto](#visão-geral-do-projeto-🔎)
+12. [Escolha das Ferramentas/Tecnologias em Cada Etapa](escolha-das-ferramentas-tecnologias-em-cada-etapa)
+13. [Planejamento do Projeto](#planejamento-do-projeto)
+14. [Resultados Obtidos](#resultados-obtidos-🏆)
 
 ## Metodologia Utilizada 📝
 Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www.ibm.com/docs/en/spss-modeler/saas?topic=dm-crisp-help-overview) (traduzido como "Processo Padrão Inter-Indústrias para Mineração de Dados"), sendo um processo construtivo-investigativo na resolução de problemas de negócio em Ciência de Dados.
@@ -139,6 +140,23 @@ Existem inúmeras maneiras de se realizar tarefas semelhantes utilizando os dive
 - **Amazon Kinesis Data Firehose** ✔ <br> Uma das principais vantagens do Kinesis Data Firehose refere-se à sua capacidade de processar dados em tempo real, enviando-os para vários destinos e permitindo que o sistema possa ser adaptável a diferentes necessidades de análise e armazenamento. No exemplo aqui abordado, é crucial o acompanhamento em tempo real das transações realizadas;
 
 - **Amazon QuickSight** ✔ <br> Uma das principais vantagens do QuickSight é sua facilidade de uso, oferecendo uma interface simples e intuitiva para visualização e análise de dados. Ademais, o QuickSight é capaz de se integrar com outros serviços da AWS, tornando-o uma solução eficiente para analisar grandes quantidades de dados em tempo real. É de suma importância poder visualizar de maneira eficiente os dados transacionais, possíveis padrões em fraudes e histórico dos clientes;
+
+## Como Monitorar a Performance do Modelo em Produção?
+Como mencionado, utilizaremos o Amazon SageMaker para monitoramento do modelo. O SageMaker, possui diversas ferramentas que nos permitem acompanhar métricas específicas e analisar o comportamento dos modelos em produção; abaixo, seguem as principais:
+
+- **Amazon CloudWatch** <br> É uma ferramenta de monitoramento da AWS que fornece métricas e logs em tempo real. O SageMaker integra com o CloudWatch para monitorar o uso de recursos, como CPU, memória e utilização de rede do modelo em produção;
+
+- **SageMaker Model Monitor** <br> O Model Monitor é uma ferramenta de monitoramento automático que permite monitorar e detectar desvios em tempo real em relação ao comportamento esperado do modelo. Ele usa técnicas estatísticas e de aprendizado de máquina para detectar anomalias;
+
+- **SageMaker Clarify** <br> O Clarify é uma ferramenta que ajuda a garantir que o modelo esteja operando de maneira balanceada e livre de viés. Ele fornece uma série de métricas e diagnósticos que permitem avaliar a equidade do modelo em relação a diferentes grupos.
+
+No que diz respeito ao modelo em si, **como podemos saber quando o modelo está obsoleto?** Ou então, em outras palavras, **como saber se a performance do modelo está satisfatória?**
+
+- Em aprendizagem de máquina, existe um fenômeno chamado **data-drift**, quando os dados utilizados para treinar um modelo sofrem mudanças significativas ao longo do tempo, de tal maneira que a amostra utilizada para treinar o modelo já não é mais representativa do fenômeno modelado. Para detectar o data-drift, e também avaliar a performance do modelo em produção, podemos:
+    - **Avaliar a variação das principais métricas** do modelo ao longo do tempo (e.g. acurácia, revocação, precisão);
+    - **Avaliar a diferença entre as distribuições passada e atual**, por exemplo através de um gráfico, visando observar se a distribuição mudou, tornando necessário retreinar o modelo;
+    - **Testes estatísticos**, como o teste de hipótese de Kolmogorov-Smirnov, o t-test e o teste de Qui-Quadrado podem ser usados para detectar data drift. Esses testes comparam as distribuições dos dados históricos e atuais e determinam se a diferença é estatisticamente significativa;
+    - Quaisquer outros métodos de detecção de anomalias e diferenças entre os dados passados e atuais, utilizando diversas técnicas estatísticas e de aprendizagem de máquina;
 
 ## Conjunto de Dados 📊
 A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O conjunto de dados contém **transações feitas por cartões de crédito** em setembro de 2013 por titulares de cartões europeus. Este conjunto de dados apresenta transações que ocorreram em dois dias, onde temos 492 fraudes em 284.807 transações. O conjunto de dados é altamente desequilibrado, a classe positiva (fraudes) representa 0,172% de todas as transações.
