@@ -168,10 +168,39 @@ A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https:/
 
 Infelizmente, por motivos de sigilo, o nome das features foi mascarado na base original. Portanto, serão atribuídos nomes fictícios para cada uma delas, para fins do projeto. Segue abaixo uma lista contendo as colunas e suas respectivas descrições:
 
-| Coluna     | Tipo do Dado | Descrição          |
-|------------|--------------|--------------------|
-| `amount`   | `float`      | Valor da transação |
-| `time`     | `datetime`   | Data da transação  |
+| Coluna | Nome alternativo | Tipo de dados | Descrição |
+|--------|-----------------|--------------|-----------|
+| `V1` | `bandeira_origem_v1` | `float64` | Bandeira do cartão utilizado na transação pela origem |
+| `V2` | `bandeira_destino_v2` | `float64` | Bandeira do cartão utilizado na transação pelo destino |
+| `V3` | `tipo_transacao_v3` | `float64` | Tipo de transação realizada |
+| `V4` | `tipo_transacao_2_v4` | `float64` | Segundo tipo de transação realizada |
+| `V5` | `banco_origem_v5` | `float64` | Banco da conta de origem utilizada na transação |
+| `V6` | `banco_destino_v6` | `float64` | Banco da conta de destino utilizada na transação |
+| `V7` | `longitude_v7` | `float64` | Coordenada de longitude da transação |
+| `V8` | `latitude_v8` | `float64` | Coordenada de latitude da transação |
+| `V9` | `periodo_do_dia_transacao_v9` | `float64` | Período do dia em que a transação foi realizada |
+| `V10` | `data_transacao_dia_da_semana_v10` | `float64` | Dia da semana em que a transação foi realizada |
+| `V11` | `data_transacao_mes_v11` | `float64` | Mês em que a transação foi realizada |
+| `V12` | `dist_origem_destino_v12` | `float64` | Distância geográfica entre a origem e o destino da transação |
+| `V13` | `valor_saldo_anterior_origem_v13` | `float64` | Valor do saldo anterior da conta de origem |
+| `V14` | `valor_saldo_anterior_destino_v14` | `float64` | Valor do saldo anterior da conta de destino |
+| `V15` | `tipo_cartao_v15` | `float64` | Tipo de cartão utilizado na transação |
+| `V16` | `debito_credito_v16` | `float64` | Indica se a transação foi de débito ou crédito |
+| `V17` | `tempo_conta_origem_v17` | `float64` | Tempo de existência da conta de origem |
+| `V18` | `tempo_conta_destino_v18` | `float64` | Tempo de existência da conta de destino |
+| `V19` | `grupo_ip_origem_v19` | `float64` | Grupo de endereços de IP da origem da transação |
+| `V20` | `pais_origem_v20` | `float64` | País de origem da transação |
+| `V21` | `pais_destino_v21` | `float64` | País de destino da transação |
+| `V22` | `grupo_cep_origem_v22` | `float64` | Grupo de CEPs da origem da transação |
+| `V23` | `grupo_cep_destino_v23` | `float64` | Grupo de CEP do destinatário da transação |
+| `V24`  | `data_expiracao_v24` | `float64` | Data de expiração do cartão de crédito utilizado na transação |
+| `V25`  | `limiar_fraude_v25` | `float64` | Limiar de decisão para a identificação de fraude |
+| `V26`  | `bandeira_cartao_origem_v26` | `float64` | Bandeira do cartão de crédito utilizado na transação |
+| `V27`  | `grupo_sistema_operacional_origem_v27` | `float64` | Grupo do sistema operacional utilizado na transação |
+| `V28`  | `taxa_incidencia_fraudes_no_passado_v28` | `float64` | Taxa de incidência de fraudes no passado para o usuário |
+| `Time` | `tempo` | `float64` | Número de segundos decorridos entre a transação atual e a primeira transação no conjunto de dados |
+| `Amount` | `valor` | `float64` | Valor da transação, em dólares |
+| `Fraud` | `fraude` | `int64` | Indicador binário de fraude, onde 1 representa uma transação fraudulenta e 0 representa uma transação legítima |
 
 ## Principais KPIs e Métricas 📈
 Após conversas com o time de negócios e os principais stakeholders envolvidos no projeto, foram definidas as principais KPIs referentes ao modelo a ser construído:
