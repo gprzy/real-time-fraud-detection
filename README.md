@@ -75,7 +75,7 @@ Todos os itens acima referem-se, em geral, à quebras abruptas no padrão de gas
 ## Abordagem Escolhida ⌚
 Existem inúmeras abordagens diferentes para diferentes tipos de problemas de negócio, computação e aprendizagem de máquina. No tocante ao nosso problema de detecção de fraudes, mais especificamente em relação ao modelo de aprendizagem de máquina subjacente, temos algumas possíveis abordagens distintas, entre elas:
 
-- **Em Tempo Real** ⏱ (*real-time*) <br> A abordagem mais adequada para detecções de fraude em tempo hábil, em relação à aprendizagem de máquina, é a **real-time**, pois precisamos detectar as fraudes antes que ocorram, de maneira rápida. Uma maneira comum de realizar isso é enviando uma requisição à um modelo previamente treinado, que irá nos dizer se uma determinada transação é ou não uma transação fraudulenta, ou então qual a probabilidade que seja fraudulenta de fato;
+- **Em Tempo Real** (*real-time*) ⏱ <br> A abordagem mais adequada para detecções de fraude em tempo hábil, em relação à aprendizagem de máquina, é a **real-time**, pois precisamos detectar as fraudes antes que ocorram, de maneira rápida. Uma maneira comum de realizar isso é enviando uma requisição à um modelo previamente treinado, que irá nos dizer se uma determinada transação é ou não uma transação fraudulenta, ou então qual a probabilidade que seja fraudulenta de fato;
 
 - **Em Lotes** (*batch*) 📦 <br> A abordagem em *batch*, nesse caso em específico, não é indicada, uma vez que realizaríamos predições em lotes de dados, geralmente periodicamente, podendo descobrir as fraudes após estas já terem ocorrido. 
 
