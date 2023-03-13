@@ -1,3 +1,6 @@
+[![Open in colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gprzy/real-time-fraud-detection/blob/main/fraud_detection.ipynb)
+[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/gprzy/real-time-fraud-detection/blob/main/LICENSE)
+
 # Detecção de Fraudes em Tempo Real
 
 <div align="center">
