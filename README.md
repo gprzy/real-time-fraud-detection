@@ -35,6 +35,39 @@ Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www
     <br> Imagem de Especialização em Data Science e Big Data (UFPR), disponível em <a href="https://moodle.com/pt/">Moodle</a>.
 </div>
 
+## Um Problema com Detecção de Fraudes: Desbalanceamento!
+É muito comum em problemas de detecção de fraudes que o evento de interesse (no nosso caso, a fraude) ocorra com uma frequência muito menor que os eventos da classe majoritária. Essa característica, em aprendizagem de máquina, é conhecida como **desbalanceamento de classes**, gerando diversas implicações na criação de modelos. Os modelos apresentam um "viés" para classificar as classes como pertencentes à classe majoritária, gerando pouco ou até mesmo nenhum apredizado. Contornar esse problema é uma tarefa desafiadora, existindo diversas técnicas que podem ajudar nesse contexto; entre tais técnicas, temos estratégias de:
+- **Undersampling** <br> É a redução do número de instâncias da classe majoritária, para que as classes se igualem em quantidade. Alguns exemplos de técnicas possíveis de serem utilizadas, dessa categoria, são:
+    - `RandomUnderSampler`;
+    - `TomekLinks`;
+    - `NearMiss`;
+- **Oversampling** <br> Processo contrário ao apresentado acima. Se refere a inserção de instâncias pertencentes à classe minoritária, seguindo alguma estratégia, como por exemplo inserção de dados sintéticos. Alguns exemplos de técnicas dessa categoria são:
+    - `RandomOverSampler`;
+    - `SMOTE` (Synthetic Minority Over-sampling Technique);
+    - `ADASYN` (Adaptive Synthetic Sampling);
+
+A escolha da técnica específica depende das particularidades do problema sendo abordado. É comum, em problemas de detecção de fraude, a mistura de diversas técnicas, entre elas a criação de **stacks** de modelos, *ensembles* treinados com variedades balanceadas dos dados originais, utilizando técnicas semelhantes às descritas acima, fornecendo uma capacidade preditiva superior. No geral, os modelos são também treinados utilizando separações estratificadas de dados, ou seja, mantendo as proporções das classes, para não aumentar ainda mais o desbalanceamento. Existem, ainda, outros métodos complementares nos quais pesos específicos são atribuídos à classe minoritária, visando compensar a menor quantidade.
+
+## Quais Informações são Relevantes?
+
+- **Endereço IP do dispositivo de origem** <br> As instituições financeiras podem verificar o endereço IP do dispositivo usado para fazer a transação e verificar se ele está geograficamente próximo ao endereço de faturamento do cartão de crédito. Além disso, eles podem verificar se o endereço IP está em uma lista de endereços conhecidos por atividades fraudulentas;
+
+- **Localização geográfica** <br> As instituições financeiras também podem verificar a localização geográfica da transação e verificar se ela está em uma área conhecida por atividades fraudulentas, como mencionado no tópico anterior;
+
+- **Valor da transação** <br> Valores muito altos ou muito baixos em relação à transação média do usuário podem ser indicadores de atividade fraudulenta. Em suma, anomalias nos valores usuais daquele cliente;
+
+- **Tipo de transação** <br> As instituições financeiras podem verificar o tipo de transação que está sendo realizada e se ela é consistente com o histórico de transações do usuário. Ainda, transações de um tipo específico podem aumentar a probabilidade de ocorrência de uma fraude, especialmente padrões de trocas abruptas do tipo transacional;
+
+- **Padrões de gastos** <br> As instituições financeiras podem verificar se o padrão de gastos do usuário mudou recentemente ou se há transações incomuns que não estão em conformidade com o histórico de gastos do usuário. Esse item é complementar ao que se refere ao valor da transação, visando obter informações a respeito dos padrões de gasto do cliente e o quanto as transações distoam desse padrão;
+
+- **Histórico de transações** <br> O histórico de transações do usuário pode ser verificado para identificar transações suspeitas ou atividades incomuns. No mais, a análise do histórico também fornece exemplos de padrões em históricos trnasacionais não fraudulentos;
+
+- **Tipo de cartão de crédito** <br> Algumas instituições financeiras consideram o tipo de cartão de crédito usado para fazer a transação e se ele é consistentemente usado para fazer compras caras ou incomuns, fornecendo possivelmente uma maior probabilidade de fraude;
+
+- **Frequência de uso** <br> A frequência de uso do cartão de crédito também pode ser um indicador de atividade fraudulenta, especialmente se houver um aumento repentino no uso do cartão;
+
+Todos os itens acima referem-se, em geral, à quebras abruptas no padrão de gasto de um cliente, ou então diretamente à atividades tipicamente suspeitas. No geral, as informações acima referem-se à features que buscam quantificar anomalias, quebras de frequência, diferenças nos gastos usuais, e, por fim, compondo esses itens suspeitos para gerar uma classificação final.
+
 ## Abordagem Escolhida ⌚
 Existem inúmeras abordagens diferentes para diferentes tipos de problemas de negócio, computação e aprendizagem de máquina. No tocante ao nosso problema de detecção de fraudes, mais especificamente em relação ao modelo de aprendizagem de máquina subjacente, temos algumas possíveis abordagens distintas, entre elas:
 
@@ -44,7 +77,33 @@ Existem inúmeras abordagens diferentes para diferentes tipos de problemas de ne
 
 - **Em Fluxos** (*stream*) <br> Primeiramente, é importante fazer uma distinção: o conceito de "stream" para a Engenharia de Dados, em relação à fluxos de dados, é diferente da definição de "stream" no contexto de modelos de aprendizagem de máquina. A primeira refere-se à um tipo especial de processamento de dados em tempo real, mais especificamente relacionados à ordem sequencial e contínua dos dados. A última, refere-se a tipos particulares de modelos capazes de se adaptarem às mudanças nos dados ao longo do tempo (i.e. data drift), reduzindo as necessidades de retreino e potencialmente aperfeiçoando seu desempenho ao longo do tempo. Dito isto, a abordagem em stream é uma alternativa interessante e possível, caso feita em tempo real, de maneira semelhante à abordagem em tempo real. Contudo, como não se obteve nenhuma informação adicional de que os dados das transações estão sofrendo mudanças de padrão e comportamento, optamos por utilizar os modelos tradicionais (treinados em batch) ao invés dos modelos em stream. Uma das razões é a maior complexidade de implementação, validação e monitoramento desses modelos, bem como o fato dos dados não estarem sofrendo mudanças significativas. Por fim, o processo de retreino periódico pode ser benéfico em termos de compreensão de negócio, e deve ser feito cuidadosamente. Muitas vezes é preferível realizá-lo manualmente ao invés de uma forma automatizada, devido à natureza do problema abordado. 
 
-- **Qual será o fluxo geral da detecção das fraudes?** <br> Um modelo de aprendizagem de máquina será previamente treinado com os dados históricos das transações fraudulentas, e então disponibilizado através de uma API, sendo solicitado pelas aplicações, em tempo real, para classificar uma determinada transação, guiando os próximos passos a serem evitados de maneira a mitigar a fraude.
+- **Qual será o fluxo geral da detecção das fraudes?** <br> Um modelo de aprendizagem de máquina será previamente treinado com os dados históricos das transações fraudulentas, e então disponibilizado através de uma API, sendo solicitado pelas aplicações, em tempo real, para classificar uma determinada transação, guiando os próximos passos a serem evitados de maneira a mitigar a fraude. Abaixo, segue um diagrama simples para ilustrar esse fluxo geral:
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+```mermaid
+graph TD;
+  subgraph "Loja Online"
+    A[Cliente] --> B[Realiza uma Compra] --> C[Informações de Pagamento]
+    C --> D[Envia informações de pagamento para detecção]; 
+    D --> E{Transação Fraudulenta?};
+    E -->|Sim| F[Bloqueia a Transação];
+    E -->|Não| G[Processa a Transação];
+  end
+  subgraph "Detecção de Fraudes"
+    H[Modelo de Aprendizagem de Máquina];
+    D --> H;
+    H --> E;
+  end
+```
+
+## Ciclo de vida de um modelo de Machine Learning
+Todo modelo de aprendizagem de máquina, assim como qualquer solução de software, possui um ciclo de vida com algumas etapas aproximadamente definidas. Ao pensar na solução proposta, o time de dados considerou todas essas etapas e buscou aplicar as boas práticas de MLOPs nos diferentes escopos da solução. Segue uma imagem abaixo para ilustrar esse ciclo de vida dos modelos de aprendizagem de máquina:
+
+<div align="center">
+    <image src="images/mlops.png" width=50%>
+    <br> Imagem disponível em <a href="https://nealanalytics.com/expertise/mlops/">Neal Analytics</a>.
+</div>
 
 ## Arquitetura Proposta 🗜
 Considerando o problema definido, objetivo levantado e a abordagem escolhida, bem como o fato de que a empresa atualmente já possui aplicações que utilizam serviços em nuvem da [AWS (Amazon Web Services)](https://aws.amazon.com/pt/), o time de dados concluiu, juntamente com o time de negócios, que seria uma boa escolha manter essa escolha por motivos relacionados a facilidade de manutenção, compartilhamento de conhecimentos e padronização de processos.
