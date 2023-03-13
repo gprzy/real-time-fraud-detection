@@ -86,7 +86,7 @@ Existem inúmeras abordagens diferentes para diferentes tipos de problemas de ne
 
 <div align="center">
     <image src="images/fraud_detection_general_flow.png" width=60%>
-    <br> Diagrama criado utilizando <a href="https://mermaid.js.org/">Mermaid.js</a>.
+    <br> Fluxo Geral de Detecção de Fraudes. Diagrama criado utilizando <a href="https://mermaid.js.org/">Mermaid.js</a>.
 </div>
 
 ## Ciclo de Vida de um Modelo de Machine Learning
@@ -148,7 +148,7 @@ Como mencionado, utilizaremos o Amazon SageMaker para monitoramento do modelo. O
 
 - [SageMaker Model Monitor](https://aws.amazon.com/pt/sagemaker/model-monitor/) 📉 <br> O Model Monitor é uma ferramenta de monitoramento automático que permite monitorar e detectar desvios em tempo real em relação ao comportamento esperado do modelo. Ele usa técnicas estatísticas e de aprendizado de máquina para detectar anomalias;
 
-- [SageMaker Clarify](https://aws.amazon.com/pt/sagemaker/clarify/?sagemaker-data-wrangler-whats-new.sort-by=item.additionalFields.postDateTime&sagemaker-data-wrangler-whats-new.sort-order=desc)** 💡 <br> O Clarify é uma ferramenta que ajuda a garantir que o modelo esteja operando de maneira balanceada e livre de viés. Ele fornece uma série de métricas e diagnósticos que permitem avaliar a equidade do modelo em relação a diferentes grupos.
+- [SageMaker Clarify](https://aws.amazon.com/pt/sagemaker/clarify/?sagemaker-data-wrangler-whats-new.sort-by=item.additionalFields.postDateTime&sagemaker-data-wrangler-whats-new.sort-order=desc) 💡 <br> O Clarify é uma ferramenta que ajuda a garantir que o modelo esteja operando de maneira balanceada e livre de viés. Ele fornece uma série de métricas e diagnósticos que permitem avaliar a equidade do modelo em relação a diferentes grupos.
 
 No que diz respeito ao modelo em si, **como podemos saber quando o modelo está obsoleto?** Ou então, em outras palavras, **como saber se a performance do modelo está satisfatória?**
 
