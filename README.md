@@ -81,11 +81,12 @@ Existem inúmeras abordagens diferentes para diferentes tipos de problemas de ne
 
 - **Em Fluxos** (*stream*) ⏩ <br> Primeiramente, é importante fazer uma distinção: o conceito de "stream" para a Engenharia de Dados, em relação à fluxos de dados, é diferente da definição de "stream" no contexto de modelos de aprendizagem de máquina. A primeira refere-se à um tipo especial de processamento de dados em tempo real, mais especificamente relacionados à ordem sequencial e contínua dos dados. A última, refere-se a tipos particulares de modelos capazes de se adaptarem às mudanças nos dados ao longo do tempo (i.e. data drift), reduzindo as necessidades de retreino e potencialmente aperfeiçoando seu desempenho ao longo do tempo. Dito isto, a abordagem em stream é uma alternativa interessante e possível, caso feita em tempo real, de maneira semelhante à abordagem em tempo real. Contudo, como não se obteve nenhuma informação adicional de que os dados das transações estão sofrendo mudanças de padrão e comportamento, optamos por utilizar os modelos tradicionais (treinados em batch) ao invés dos modelos em stream. Uma das razões é a maior complexidade de implementação, validação e monitoramento desses modelos, bem como o fato dos dados não estarem sofrendo mudanças significativas. Por fim, o processo de retreino periódico pode ser benéfico em termos de compreensão de negócio, e deve ser feito cuidadosamente. Muitas vezes é preferível realizá-lo manualmente ao invés de uma forma automatizada, devido à natureza do problema abordado. 
 
-- **Qual será o fluxo geral da detecção das fraudes?** <br> Um modelo de aprendizagem de máquina será previamente treinado com os dados históricos das transações fraudulentas, e então disponibilizado através de uma API, sendo solicitado pelas aplicações, em tempo real, para classificar uma determinada transação, guiando os próximos passos a serem evitados de maneira a mitigar a fraude. Abaixo, segue um diagrama simples para ilustrar esse fluxo geral:
+Considerando a abordagem mencionada, **qual será o fluxo geral da detecção das fraudes?**
+- Um modelo de aprendizagem de máquina será previamente treinado com os dados históricos das transações fraudulentas, e então disponibilizado através de uma API, sendo solicitado pelas aplicações, em tempo real, para classificar uma determinada transação, guiando os próximos passos a serem evitados de maneira a mitigar a fraude. Abaixo, segue um diagrama simples para ilustrar esse fluxo geral:
 
 <div align="center">
-    <image src="images/fraud_detection_general_flow.png" width=70%>
-    <br> Diagrama criado utilizando <a href="https://mermaid.js.org/">Mermaid.js</a>.
+    <image src="images/fraud_detection_general_flow.png" width=60%>
+    <br> Fluxo Geral de Detcção de Fraudes. Diagrama criado utilizando <a href="https://mermaid.js.org/">Mermaid.js</a>.
 </div>
 
 ## Ciclo de Vida de um Modelo de Machine Learning 🌱
