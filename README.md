@@ -17,15 +17,18 @@ Considerando o problema mencionado, o objetivo deste projeto é **construir uma 
 
 ## Lista de Tópicos 📌
 1. [Metodologia Utilizada](#metodologia-utilizada-📝)
-2. [Abordagem Escolhida](#abordagem-escolhida-⌚)
-3. [Arquitetura Proposta](#arquitetura-proposta-🗜)
-4. [Escolha da Arquitetura](#escolha-da-arquitetura)
-5. [Conjunto de Dados](#conjunto-de-dados-📊)
-6. [Principais KPIs e Métricas](#principais-kpis-e-métricas-📈)
-7. [Visão Geral do Projeto](#visão-geral-do-projeto-🔎)
-8. [Escolha das Ferramentas/Tecnologias em Cada Etapa](escolha-das-ferramentas-tecnologias-em-cada-etapa)
-9. [Planejamento do Projeto](#planejamento-do-projeto)
-10. [Resultados Obtidos](#resultados-obtidos-🏆)
+2. [Um Problema com Detecção de Fraudes: Desbalanceamento!](#)
+3. [Quais Informações são Relevantes?](#)
+4. [Abordagem Escolhida](#abordagem-escolhida-⌚)
+5. [Ciclo de Vida de um Modelo de Machine Learning](#)
+6. [Arquitetura Proposta](#arquitetura-proposta-🗜)
+7. [Escolha da Arquitetura](#escolha-da-arquitetura)
+8. [Conjunto de Dados](#conjunto-de-dados-📊)
+9. [Principais KPIs e Métricas](#principais-kpis-e-métricas-📈)
+10. [Visão Geral do Projeto](#visão-geral-do-projeto-🔎)
+11. [Escolha das Ferramentas/Tecnologias em Cada Etapa](escolha-das-ferramentas-tecnologias-em-cada-etapa)
+12. [Planejamento do Projeto](#planejamento-do-projeto)
+13. [Resultados Obtidos](#resultados-obtidos-🏆)
 
 ## Metodologia Utilizada 📝
 Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www.ibm.com/docs/en/spss-modeler/saas?topic=dm-crisp-help-overview) (traduzido como "Processo Padrão Inter-Indústrias para Mineração de Dados"), sendo um processo construtivo-investigativo na resolução de problemas de negócio em Ciência de Dados.
@@ -49,6 +52,7 @@ Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www
 A escolha da técnica específica depende das particularidades do problema sendo abordado. É comum, em problemas de detecção de fraude, a mistura de diversas técnicas, entre elas a criação de **stacks** de modelos, *ensembles* treinados com variedades balanceadas dos dados originais, utilizando técnicas semelhantes às descritas acima, fornecendo uma capacidade preditiva superior. No geral, os modelos são também treinados utilizando separações estratificadas de dados, ou seja, mantendo as proporções das classes, para não aumentar ainda mais o desbalanceamento. Existem, ainda, outros métodos complementares nos quais pesos específicos são atribuídos à classe minoritária, visando compensar a menor quantidade.
 
 ## Quais Informações são Relevantes?
+Em detecção de fraudes, existe uma gama de informações que em geral são úteis e relevantes para se descobrir atividades fraudulentas. Segue abaixo algumas delas:
 
 - **Endereço IP do dispositivo de origem** <br> As instituições financeiras podem verificar o endereço IP do dispositivo usado para fazer a transação e verificar se ele está geograficamente próximo ao endereço de faturamento do cartão de crédito. Além disso, eles podem verificar se o endereço IP está em uma lista de endereços conhecidos por atividades fraudulentas;
 
@@ -79,25 +83,12 @@ Existem inúmeras abordagens diferentes para diferentes tipos de problemas de ne
 
 - **Qual será o fluxo geral da detecção das fraudes?** <br> Um modelo de aprendizagem de máquina será previamente treinado com os dados históricos das transações fraudulentas, e então disponibilizado através de uma API, sendo solicitado pelas aplicações, em tempo real, para classificar uma determinada transação, guiando os próximos passos a serem evitados de maneira a mitigar a fraude. Abaixo, segue um diagrama simples para ilustrar esse fluxo geral:
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<div align="center">
+    <image src="images/fraud_detection_general_flow.png" width=70%>
+    <br> Diagrama criado utilizando <a href="https://mermaid.js.org/">Mermaid.js</a>.
+</div>
 
-```mermaid
-graph TD;
-  subgraph "Loja Online"
-    A[Cliente] --> B[Realiza uma Compra] --> C[Informações de Pagamento]
-    C --> D[Envia informações de pagamento para detecção]; 
-    D --> E{Transação Fraudulenta?};
-    E -->|Sim| F[Bloqueia a Transação];
-    E -->|Não| G[Processa a Transação];
-  end
-  subgraph "Detecção de Fraudes"
-    H[Modelo de Aprendizagem de Máquina];
-    D --> H;
-    H --> E;
-  end
-```
-
-## Ciclo de vida de um modelo de Machine Learning
+## Ciclo de Vida de um Modelo de Machine Learning
 Todo modelo de aprendizagem de máquina, assim como qualquer solução de software, possui um ciclo de vida com algumas etapas aproximadamente definidas. Ao pensar na solução proposta, o time de dados considerou todas essas etapas e buscou aplicar as boas práticas de MLOPs nos diferentes escopos da solução. Segue uma imagem abaixo para ilustrar esse ciclo de vida dos modelos de aprendizagem de máquina:
 
 <div align="center">
@@ -137,17 +128,17 @@ Descrevendo brevemente os componentes da arquitetura acima, temos:
 ## Escolha da Arquitetura
 Existem inúmeras maneiras de se realizar tarefas semelhantes utilizando os diversos serviços em nuvem disponíveis, tais como máquinas EC2, instâncias de contâineres, kubernetes, entre diversos outros serviços de computação. Contudo, precisamos escolher um que apresente um bom balanço entre custo/benefício. A escolha dos componentes levou em consideração critérios para se criar uma infraestrutura altamente escalável, dispoível e resiliente, que realiza predições em tempo real, com um fluxo de dados em tempo real e de processamento rápido, eficiente e confiável. No mais, tabém foi considerado um bom custo benefício, por exemplo na escolha do AWS Lambda, que é cobrado de acordo com seu tempo de execução. Segue abaixo os serviços utilizados e seus respectivos benefícios em relação à detecção de fraudes em tempo real:
 
-- **Amazon API Gateway** ✔ <br> Um dos principais benefícios do API Gateway é que ele pode gerenciar automaticamente o tráfego de solicitações de entrada e dimensionar automaticamente para lidar com picos de tráfego, sem que você precise gerenciar infraestrutura;
+- **Amazon API Gateway** ✔ <br> Um dos principais benefícios do API Gateway é que ele pode gerenciar automaticamente o tráfego de solicitações de entrada e dimensionar automaticamente para lidar com picos de tráfego, sem que você precise gerenciar infraestrutura. A ideia é fornecer uma maneira centralizada e eficiente para trabalhar com as requisições de detecção de fraude;
 
-- **Lambda** ✔ <br> Uma das principais vantagens do Lambda é a sua capacidade de escalabilidade por padrão, ou seja, pode lidar com qualquer volume de solicitações sem se preocupar em provisionar servidores. Ademais, paga-se pelo tempo de execução do código, o que o torna um serviço econômico;
+- **Lambda** ✔ <br> Uma das principais vantagens do Lambda é a sua capacidade de escalabilidade por padrão, ou seja, pode lidar com qualquer volume de solicitações sem se preocupar em provisionar servidores. Ademais, paga-se pelo tempo de execução do código, o que o torna um serviço econômico. No contexto do problema aqui apresentado, sua escalabilidade e versatilidade é uma vantagem, direcionando as requisições diretamente para o endpoint do modelo e também para o processamento dos dados pelo Kinesis;
 
 - **Amazon SageMaker** ✔ <br> Uma das principais vantagens do SageMaker provém da sua capacidade de treinar e implantar modelos de forma rápida e escalável, tornando-o ideal para ambientes em que a rapidez e a precisão são cruciais, como na detecção de fraudes em tempo real. Adicionalmente, ele permite o retreino de modelos, qie pode ser necessário dado a natureza do problema abordado;
 
 - **Amazon S3** ✔ <br> Uma das principais vantagens do Amazon S3 é sua grande escalabilidade. Ele pode armazenar e recuperar quantidades massivas de dados de forma eficiente e segura, podendo também ser facilmente integrado a outros serviços da AWS. Ademais, a durabilidade dos dados é alta, com um histórico de disponibilidade de 99,999999999% dos objetos armazenados;
 
-- **Amazon Kinesis Data Firehose** ✔ <br> Uma das principais vantagens do Kinesis Data Firehose refere-se à sua capacidade de processar dados em tempo real, enviando-os para vários destinos e permitindo que o sistema possa ser adaptável a diferentes necessidades de análise e armazenamento;
+- **Amazon Kinesis Data Firehose** ✔ <br> Uma das principais vantagens do Kinesis Data Firehose refere-se à sua capacidade de processar dados em tempo real, enviando-os para vários destinos e permitindo que o sistema possa ser adaptável a diferentes necessidades de análise e armazenamento. No exemplo aqui abordado, é crucial o acompanhamento em tempo real das transações realizadas;
 
-- **Amazon QuickSight** ✔ <br> Uma das principais vantagens do QuickSight é sua facilidade de uso, oferecendo uma interface simples e intuitiva para visualização e análise de dados. Ademais, o QuickSight é capaz de se integrar com outros serviços da AWS, tornando-o uma solução eficiente para analisar grandes quantidades de dados em tempo real;
+- **Amazon QuickSight** ✔ <br> Uma das principais vantagens do QuickSight é sua facilidade de uso, oferecendo uma interface simples e intuitiva para visualização e análise de dados. Ademais, o QuickSight é capaz de se integrar com outros serviços da AWS, tornando-o uma solução eficiente para analisar grandes quantidades de dados em tempo real. É de suma importância poder visualizar de maneira eficiente os dados transacionais, possíveis padrões em fraudes e histórico dos clientes;
 
 ## Conjunto de Dados 📊
 A base de dados utilizada será a [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O conjunto de dados contém **transações feitas por cartões de crédito** em setembro de 2013 por titulares de cartões europeus. Este conjunto de dados apresenta transações que ocorreram em dois dias, onde temos 492 fraudes em 284.807 transações. O conjunto de dados é altamente desequilibrado, a classe positiva (fraudes) representa 0,172% de todas as transações.
