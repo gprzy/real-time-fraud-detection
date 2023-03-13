@@ -30,6 +30,7 @@ Considerando o problema mencionado, o objetivo deste projeto é **construir uma 
 12. [Escolha das Ferramentas/Tecnologias em Cada Etapa](escolha-das-ferramentas-tecnologias-em-cada-etapa)
 13. [Planejamento do Projeto](#planejamento-do-projeto)
 14. [Resultados Obtidos](#resultados-obtidos-🏆)
+15. [Considerações Finais](#resultados-obtidos-🏆)
 
 ## Metodologia Utilizada 📝
 Na construção do projeto, será utilizada a metodologia [CRISP-DM](https://www.ibm.com/docs/en/spss-modeler/saas?topic=dm-crisp-help-overview) (traduzido como "Processo Padrão Inter-Indústrias para Mineração de Dados"), sendo um processo construtivo-investigativo na resolução de problemas de negócio em Ciência de Dados.
@@ -241,5 +242,5 @@ Os resultados abaixo são referentes ao modelo de detecção de fraude, utilizan
 
 **O modelo foi capaz de detectar corretamente 80% das transações fraudulentas, com uma precisão de 89%**. A precisão e revocação de detecção das transações não fraudulentas foi de aproximadamente 100%.
 
-## Considerações Finais
+## Considerações Finais 💡
 O modelo apresentou um ótimo desempenho, com um bom equiíbrio entre acertos e falsos positivos. Com isso, o modelo cumpre com as metras a ele atreladas, apresentando um desempenho superior ao estado atual de detecção de fraudes no setor de risco da empresa, bem como em um tempo menor e de maneira mais eficiente!
